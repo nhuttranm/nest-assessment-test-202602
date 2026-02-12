@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
-import { redisStore } from 'cache-manager-redis-yet';
+import * as redisStore from 'cache-manager-redis-store';
 import appConfig from './config/app.config';
 import { AppDataSource, typeOrmConfig } from './config/typeorm.config';
 import { PairsService } from './services/pairs.service';
@@ -20,7 +20,7 @@ import { UserPair } from './entities/user-pair.entity';
     }),
     TypeOrmModule.forFeature([UserPair]),
     CacheModule.registerAsync({
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         ttl: 300, // 5 minutes
         store: redisStore,
         host: configService.get('app.redis.host'),
