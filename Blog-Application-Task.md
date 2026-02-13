@@ -1,5 +1,5 @@
 
-# 🧩 Blog Application – Technical Delivery Plan (Senior Level)
+# 🧩 Blog Application – Task Management Plan
 
 ## 1. Overview
 
